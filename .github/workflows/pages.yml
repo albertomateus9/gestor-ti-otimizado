@@ -44,8 +44,8 @@ jobs:
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
           VITE_BASE_PATH: /gestor-ti-otimizado/
 
-      - name: Add SPA fallback
-        run: cp dist/index.html dist/404.html
+      - name: Check SPA fallback
+        run: test -f dist/404.html
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
