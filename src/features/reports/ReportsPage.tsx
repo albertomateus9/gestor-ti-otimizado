@@ -20,7 +20,7 @@ const labels: Record<ReportType, string> = {
 export function ReportsPage() {
   const [type, setType] = useState<ReportType>('computadores')
   const report = useQuery({ queryKey: ['relatorio', type], queryFn: () => reportService.get(type) })
-  const dashboard = useQuery({ queryKey: ['dashboard'], queryFn: dashboardService.getStats })
+  const dashboard = useQuery({ queryKey: ['dashboard'], queryFn: () => dashboardService.getStats() })
   const total = useMemo(() => (Array.isArray(report.data) ? report.data.length : 0), [report.data])
 
   return (

@@ -16,7 +16,7 @@ const columns: Column<AccessLog>[] = [
 export function SettingsPage() {
   const { profile } = useAuth()
   const isAdmin = profile?.role === 'admin'
-  const query = useQuery({ queryKey: ['access_logs'], queryFn: adminService.listAccessLogs, enabled: isAdmin })
+  const query = useQuery({ queryKey: ['access_logs'], queryFn: () => adminService.listAccessLogs(), enabled: isAdmin })
 
   return (
     <section>

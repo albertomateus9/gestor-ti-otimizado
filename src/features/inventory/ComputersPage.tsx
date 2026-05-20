@@ -18,7 +18,7 @@ const columns: Column<Computer>[] = [
 ]
 
 export function ComputersPage() {
-  const query = useQuery({ queryKey: ['computadores'], queryFn: computerService.list })
+  const query = useQuery({ queryKey: ['computadores'], queryFn: () => computerService.list() })
 
   return (
     <section>

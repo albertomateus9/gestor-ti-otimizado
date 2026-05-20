@@ -18,7 +18,7 @@ const columns: Column<Maintenance>[] = [
 ]
 
 export function MaintenancePage() {
-  const query = useQuery({ queryKey: ['manutencoes'], queryFn: maintenanceService.list })
+  const query = useQuery({ queryKey: ['manutencoes'], queryFn: () => maintenanceService.list() })
 
   return (
     <section>

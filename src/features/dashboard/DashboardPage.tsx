@@ -9,7 +9,7 @@ import { dashboardService } from '@/services/dashboardService'
 const DashboardCharts = lazy(() => import('./DashboardCharts').then((module) => ({ default: module.DashboardCharts })))
 
 export function DashboardPage() {
-  const query = useQuery({ queryKey: ['dashboard'], queryFn: dashboardService.getStats })
+  const query = useQuery({ queryKey: ['dashboard'], queryFn: () => dashboardService.getStats() })
 
   return (
     <section>

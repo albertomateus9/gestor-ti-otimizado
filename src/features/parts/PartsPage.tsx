@@ -17,7 +17,7 @@ const columns: Column<Part>[] = [
 ]
 
 export function PartsPage() {
-  const query = useQuery({ queryKey: ['pecas'], queryFn: partService.list })
+  const query = useQuery({ queryKey: ['pecas'], queryFn: () => partService.list() })
   return (
     <section>
       <PageHeader title="Peças" description="Controle de estoque de peças e suprimentos." />

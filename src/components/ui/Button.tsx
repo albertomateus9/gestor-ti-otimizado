@@ -13,6 +13,7 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'primary', size = 'md', loading, asChild, children, disabled, ...props }, ref) => {
     const Component = asChild ? Slot : 'button'
+    const isDisabled = disabled || loading
     return (
       <Component
         ref={ref}
@@ -27,11 +28,18 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           variant === 'danger' && 'border-danger bg-danger text-white hover:bg-red-700',
           className,
         )}
-        disabled={disabled || loading}
+        aria-disabled={asChild && isDisabled ? true : undefined}
+        disabled={!asChild ? isDisabled : undefined}
         {...props}
       >
-        {loading ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : null}
-        {children}
+        {asChild ? (
+          children
+        ) : (
+          <>
+            {loading ? <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" /> : null}
+            {children}
+          </>
+        )}
       </Component>
     )
   },
